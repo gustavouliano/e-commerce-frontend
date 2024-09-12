@@ -8,7 +8,7 @@ type Props = {
 // example: https://codepen.io/Gustavo-Uliano/pen/NWZOKOP
 export default function CategoryTable(props: Props) {
   return (
-    <table className="table table-hover">
+    <table className={`${styles.container} table table-hover`}>
       <thead>
         <tr>
           <th scope="col">#ID</th>

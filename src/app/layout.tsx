@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Sidebar, { SidebarItem } from "@/components/Layout/Sidebar";
+import "./globals.css";
+import { BarChart3, LayoutDashboard, Settings } from "lucide-react";
 export const metadata: Metadata = {
   title: {
     default: "Projeto Teste",
@@ -15,7 +18,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <main className="App">
+          <Sidebar>
+            <SidebarItem
+              icon={<LayoutDashboard size={20} />}
+              text="Dashboard"
+            />
+            <SidebarItem icon={<BarChart3 size={20} />} text="Products" />
+            <hr className="my-3" />
+            <SidebarItem icon={<Settings size={20} />} text="Settings" />
+          </Sidebar>
+          <div>{children}</div>
+        </main>
+      </body>
     </html>
   );
 }
