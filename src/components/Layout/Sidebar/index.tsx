@@ -4,7 +4,7 @@ import { useContext, createContext, useState } from "react";
 
 const SidebarContext = createContext({ expanded: false });
 
-export default function Sidebar({ children }) {
+export default function Sidebar({ children }: any) {
   const [expanded, setExpanded] = useState(true);
 
   return (

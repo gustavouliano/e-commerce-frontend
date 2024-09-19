@@ -3,6 +3,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar, { SidebarItem } from "@/components/Layout/Sidebar";
 import "./globals.css";
 import { BarChart3, LayoutDashboard, Settings } from "lucide-react";
+import { getSession } from "@/lib/dal";
+import { useEffect } from "react";
+import { cookies } from "next/headers";
+import EmployeeSidebar from "@/components/Layout/Sidebar/employee-sidebar";
 export const metadata: Metadata = {
   title: {
     default: "Projeto Teste",
@@ -16,19 +20,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isLogged = getSession();
+  console.log("a");
   return (
     <html lang="pt-BR">
       <body>
         <main className="App">
-          <Sidebar>
-            <SidebarItem
-              icon={<LayoutDashboard size={20} />}
-              text="Dashboard"
-            />
-            <SidebarItem icon={<BarChart3 size={20} />} text="Products" />
-            <hr className="my-3" />
-            <SidebarItem icon={<Settings size={20} />} text="Settings" />
-          </Sidebar>
+          {isLogged && <EmployeeSidebar />}
           <div>{children}</div>
         </main>
       </body>
