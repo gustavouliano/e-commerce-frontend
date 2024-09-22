@@ -1,5 +1,6 @@
 "use client";
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
+import Link from "next/link";
 import { useContext, createContext, useState } from "react";
 
 const SidebarContext = createContext({ expanded: false });
@@ -54,11 +55,18 @@ export default function Sidebar({ children }: any) {
   );
 }
 
-export function SidebarItem({ icon, text, active = false, alert = false }) {
+export function SidebarItem({
+  icon,
+  text,
+  active = false,
+  alert = false,
+  path = "/",
+}) {
   const { expanded } = useContext(SidebarContext);
 
   return (
-    <li
+    <Link
+      href={path}
       className={`
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
@@ -98,6 +106,6 @@ export function SidebarItem({ icon, text, active = false, alert = false }) {
           {text}
         </div>
       )}
-    </li>
+    </Link>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar, { SidebarItem } from "@/components/Layout/Sidebar";
 import "./globals.css";
@@ -21,14 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const isLogged = getSession();
-  console.log("a");
   return (
     <html lang="pt-BR">
       <body>
-        <main className="App">
-          {isLogged && <EmployeeSidebar />}
-          <div>{children}</div>
-        </main>
+        <AppRouterCacheProvider>
+          <main className="App">
+            {isLogged && <EmployeeSidebar />}
+            <div className="w-full">{children}</div>
+          </main>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
